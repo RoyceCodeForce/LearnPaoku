@@ -1,10 +1,18 @@
+/*
+ * howler.js 是一个新的 JavaScript 库用于处理 Web 的音频，该库最初是为一个 HTML5 游戏引擎所开发，但也可用于其他的 Web 项目。
+   muted 当设置该属性后，它规定视频的音频输出应该被静音
+ */
 function visibleResume() {
     muted || manualPause || Howler.unmute()
 }
 function visiblePause() {
     Howler.mute()
 }
-function initSplash() {
+/*
+ * 初始化启动画面
+ * splash是一个制作启动画面的类
+ */
+function initSplash() { 
     gameState = "splash",
     resizeCanvas(),
     splash = new Elements.Splash(assetLib.getData("splash"), canvas.width, canvas.height),
@@ -19,21 +27,23 @@ function initSplash() {
 
 
 function initStartScreen() {
+	//b c d 分别是开始键，更多游戏和分数计数器
     var a, b, c, d, e;
     for (gameState = "start", userInput.removeHitArea("moreGames"), 1 == audioType && (musicTween && musicTween.kill(), musicTween = TweenLite.to(music, 1, {
         volume: .2,
         ease: "Linear.easeNone"
-    })), a = 0; a < aPowerUpBarData.length; a++) aPowerUpBarData[a] = saveDataHandler.aLevelStore[2 + a];
+    })), a = 0;a < aPowerUpBarData.length;a++) 
+    aPowerUpBarData[a] = saveDataHandler.aLevelStore[2 + a];
+    
     oGameData.totalGems = saveDataHandler.aLevelStore[0],
     levelScore = 0,
     totalScore = 0,
     levelNum = 0,
-    background = new Elements.Background(assetLib.getData("background0"), canvas.width, canvas.height),
-    background.renderState = "menuScroll",
-    userInput.addHitArea("mute", butEventHandler, null, "rect", {
+    background = new Elements.Background(assetLib.getData("background0"), canvas.width, canvas.height),background.renderState = "menuScroll",
+    		userInput.addHitArea("mute", butEventHandler, null, "rect", {
         aRect: [392, 0, canvas.width, 53]
-    },
-    !0),
+    		},
+    		!0),
     b = {
         oImgData: assetLib.getData("uiButs"),
         aPos: [canvas.width / 2, 530],
@@ -121,6 +131,9 @@ function initGame() {
     previousTime = (new Date).getTime(),
     updateGameEvent()
 }
+/*
+ * 按键监听事件
+ */
 function butEventHandler(a, b) {
     switch (a) {
     case "langSelect":

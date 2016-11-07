@@ -6,6 +6,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.01, minimal-ui" />
 	<style>
+	/*
+	 * 最大容器的样式设置，包括背景图
+	 */
 		body {
 			margin: 0px;
 			padding: 0px;
@@ -45,6 +48,7 @@
 	</style>
 	
 	<script src="viewporter.js"></script>
+	<!-- domain 属性可以解决因同源安全策略带来的不同文档的属性共享问题--> 
 	<script>document.domain = '4399.com';</script>
 </head>
 	
@@ -52,11 +56,18 @@
 		<div id="toolbar">
 			
 		</div>
-		<div id="viewporter">
+		<!--canvas是游戏区的画布-->
+		<div id="viewporter"> 
 		   <canvas id="canvas" moz-opaque></canvas>
 		</div>
 	</body>
     <script type="text/javascript">
+    /*
+     * -moz代表firefox浏览器私有属性
+	   -ms代表IE浏览器私有属性
+	   -webkit代表chrome、safari私有属性
+     * TIPS 三种主流浏览器引擎的全屏显示方法
+     */
 	  function launchFullscreen(element) {
 		  element.style.backgroundImage = "url('images/bg.jpg')"
 		  if(element.requestFullscreen) {
@@ -95,6 +106,9 @@
 	function dp_submitScore(score){
 		
 	}
+	/*
+	 * 最终成绩呈现函数
+	 */
 	function updateShare(bestScore) {
 		var shareTitle = "";
 		switch(true){
